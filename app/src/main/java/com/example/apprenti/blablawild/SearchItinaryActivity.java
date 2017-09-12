@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import static android.R.attr.id;
 import static com.example.apprenti.blablawild.R.layout.activity_search_itinary;
 
 public class SearchItinaryActivity extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class SearchItinaryActivity extends AppCompatActivity {
                 EditText arrivee = (EditText) findViewById(R.id.textView4);
 
                 if(depart.getText().toString().trim().length() == 0 || arrivee.getText().toString().trim().length() == 0) {
-                    Toast.makeText(SearchItinaryActivity.this,"Veuillez renseigner les champs 'Départ' et 'Destination'.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SearchItinaryActivity.this,R.string.toast,Toast.LENGTH_SHORT).show();
                 } else {
                     Intent resultat = new Intent(SearchItinaryActivity.this, ViewSearchItineraryResultsListActivity.class);
                     resultat.putExtra("depart", depart.getText().toString());
