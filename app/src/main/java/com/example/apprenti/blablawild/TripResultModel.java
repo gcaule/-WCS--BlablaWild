@@ -1,5 +1,7 @@
 package com.example.apprenti.blablawild;
 
+import java.util.Date;
+
 /**
  * Created by apprenti on 13/09/17.
  */
@@ -7,10 +9,10 @@ package com.example.apprenti.blablawild;
 public class TripResultModel {
 
     private String firstName;
-    private String departureTime;
+    private Date departureTime;
     private int viewPrice;
 
-    public TripResultModel(String firstName, String departureTime, int viewPrice) {
+    public TripResultModel(String firstName, Date departureTime, int viewPrice) {
         this.firstName = firstName;
         this.departureTime = departureTime;
         this.viewPrice = viewPrice;
@@ -20,7 +22,7 @@ public class TripResultModel {
         return firstName;
     }
 
-    public String getDepartureTime() {
+    public Date getDepartureTime() {
         return departureTime;
     }
 

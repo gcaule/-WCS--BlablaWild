@@ -37,7 +37,7 @@ public class TripResultAdapter extends ArrayAdapter<TripResultModel> {
 
         TripResultModel tripResultModel = getItem(position);
         viewHolder.firstName.setText(tripResultModel.getFirstName());
-        viewHolder.departureTime.setText(tripResultModel.getDepartureTime());
+        viewHolder.departureTime.setText(tripResultModel.getDepartureTime().toString());
         viewHolder.viewPrice.setText(String.valueOf(tripResultModel.getViewPrice()));
 
         return convertView;
