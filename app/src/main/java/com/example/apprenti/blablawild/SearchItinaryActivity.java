@@ -8,15 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import static android.R.attr.id;
-import static com.example.apprenti.blablawild.R.layout.activity_search_itinary;
-
 public class SearchItinaryActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(activity_search_itinary);
+        setContentView(R.layout.activity_search_itinary);
 
         Button rechercher= (Button)findViewById(R.id.button);
         rechercher.setOnClickListener(new View.OnClickListener() {

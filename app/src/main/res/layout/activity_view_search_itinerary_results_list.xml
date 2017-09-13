@@ -6,4 +6,16 @@
     android:layout_height="match_parent"
     tools:context="com.example.apprenti.blablawild.ViewSearchItineraryResultsListActivity">
 
+    <ListView
+        android:id="@+id/listViewSearchResults"
+        android:layout_width="384dp"
+        android:layout_height="511dp"
+        android:layout_marginLeft="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="0dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="0dp" />
 </android.support.constraint.ConstraintLayout>
