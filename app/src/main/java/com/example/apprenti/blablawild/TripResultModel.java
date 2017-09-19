@@ -19,15 +19,26 @@ public class TripResultModel {
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
 
     public Date getDepartureTime() {
-        return departureTime;
+        return this.departureTime;
     }
 
     public int getViewPrice() {
-        return viewPrice;
+        return this.viewPrice;
     }
 
+    public void setFirstName() {
+        this.firstName = firstName;
+    }
+
+    public void setDepartureTime() {
+        this.departureTime = departureTime;
+    }
+
+    public void setViewPrice() {
+        this.viewPrice = viewPrice;
+    }
 }

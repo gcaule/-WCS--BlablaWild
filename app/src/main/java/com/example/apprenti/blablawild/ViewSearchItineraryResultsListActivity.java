@@ -25,10 +25,6 @@ public class ViewSearchItineraryResultsListActivity extends AppCompatActivity {
 
         mListViewResults = (ListView) findViewById(R.id.listViewSearchResults);
 
-
-
-
-
         List<TripResultModel> tripResultModels = new ArrayList<>();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy-hh:mm");
@@ -41,8 +37,6 @@ public class ViewSearchItineraryResultsListActivity extends AppCompatActivity {
 
         } catch (ParseException e) {
         }
-
-
 
         TripResultAdapter adapter = new TripResultAdapter(ViewSearchItineraryResultsListActivity.this, tripResultModels);
         mListViewResults.setAdapter(adapter);
