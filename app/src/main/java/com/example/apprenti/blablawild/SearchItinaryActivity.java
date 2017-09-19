@@ -12,7 +12,10 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class SearchItinaryActivity extends AppCompatActivity {
     static EditText date;
@@ -30,14 +33,23 @@ public class SearchItinaryActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 EditText depart = (EditText) findViewById(R.id.textView2);
+                String dep = depart.getText().toString();
                 EditText arrivee = (EditText) findViewById(R.id.textView4);
+                String arr = arrivee.getText().toString();
+                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
+                Date date1 = null;
+                try {
+                    date1 = sdf.parse(date.getText().toString());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
-                if (depart.getText().toString().trim().length() == 0 || arrivee.getText().toString().trim().length() == 0) {
+                if (depart.getText().toString().trim().length() == 0 || arrivee.getText().toString().trim().length() == 0 || date.getText().toString().trim().length() == 0 ) {
                     Toast.makeText(SearchItinaryActivity.this, R.string.toast, Toast.LENGTH_SHORT).show();
                 } else {
                     Intent resultat = new Intent(SearchItinaryActivity.this, ViewSearchItineraryResultsListActivity.class);
-                    resultat.putExtra("depart", depart.getText().toString());
-                    resultat.putExtra("arrivee", arrivee.getText().toString());
+                    SearchRequestModel search = new SearchRequestModel(dep, arr, date1);
+                    resultat.putExtra("search", search);
                     startActivity(resultat);
                 }
             }

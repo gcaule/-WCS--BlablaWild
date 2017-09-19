@@ -10,5 +10,5 @@
     <string name="departureTime">Heure de départ</string>
     <string name="firstName">Prénom</string>
     <string name="viewPrice">Voir prix</string>
-    <string name="toast">"Veuillez renseigner les champs 'Départ' et 'Destination'."</string>
+    <string name="toast">"Veuillez renseigner tous les champs."</string>
 </resources>
