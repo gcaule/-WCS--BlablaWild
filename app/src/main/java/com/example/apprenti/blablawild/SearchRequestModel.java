@@ -25,25 +25,14 @@ public class SearchRequestModel implements Parcelable {
         return depart;
     }
 
-    public void setDepart(String depart) {
-        this.depart = depart;
-    }
-
     public String getArrivee() {
         return arrivee;
-    }
-
-    public void setArrivee(String arrivee) {
-        this.arrivee = arrivee;
     }
 
     public Date getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
-    }
 
     public int describeContents() {
         return 0;

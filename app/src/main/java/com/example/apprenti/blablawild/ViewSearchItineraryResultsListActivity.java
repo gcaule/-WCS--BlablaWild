@@ -29,13 +29,11 @@ public class ViewSearchItineraryResultsListActivity extends AppCompatActivity {
         Context context = getApplicationContext();
         CharSequence text = sdf.format(search.getDate());
 
-        //Toast.makeText(ViewSearchItineraryResultsListActivity.this, search.getDate(), Toast.LENGTH_LONG).show();
         setTitle(arrivee2 + " >> " + depart2);
 
         int duration = Toast.LENGTH_SHORT;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
-
 
         mListViewResults = (ListView) findViewById(R.id.listViewSearchResults);
 

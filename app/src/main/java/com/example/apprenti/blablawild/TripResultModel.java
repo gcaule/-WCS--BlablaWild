@@ -30,15 +30,4 @@ public class TripResultModel {
         return this.viewPrice;
     }
 
-    public void setFirstName() {
-        this.firstName = firstName;
-    }
-
-    public void setDepartureTime() {
-        this.departureTime = departureTime;
-    }
-
-    public void setViewPrice() {
-        this.viewPrice = viewPrice;
-    }
 }
