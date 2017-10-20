@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Bla Bla Wild</string>
-    <string name="action_settings">Settings</string>
+    <string name="nomApplication">Bla Bla Wild</string>
+    <string name="paramètres">Settings</string>
     <string name="date">Date</string>
     <string name="depart">Departure</string>
-    <string name="departureTime">Departure time</string>
+    <string name="heureDepart">Departure time</string>
     <string name="destination">Destination</string>
-    <string name="firstName">First name</string>
-    <string name="rechercherAccueil">Search itinary</string>
+    <string name="prenom">First name</string>
+    <string name="rechercherAccueil">Search itinerary</string>
     <string name="rechercherRoute">Search</string>
-    <string name="search_text">Search</string>
+    <string name="rechercher">Search</string>
     <string name="toast">Please inform all the fields.</string>
-    <string name="viewPrice">See price</string>
+    <string name="voirPrix">See price</string>
+    <string name="proposerRoute">Submit itinerary</string>
+    <string name="prix">Price</string>
+    <string name="publier">Submit</string>
+    <string name="dateDepart">Departure date</string>
+    <string name="itineraire">Itinerary created</string>
 </resources>

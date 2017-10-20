@@ -3,66 +3,64 @@ package com.example.apprenti.blablawild;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 /**
  * Created by apprenti on 19/09/17.
  */
 
 public class SearchRequestModel implements Parcelable {
 
-    private String depart;
-    private String arrivee;
-    private Date date;
+    private String departure;
+    private String destination;
+    private String date;
 
-    public SearchRequestModel(String depart, String arrivee, Date date) {
-        this.depart = depart;
-        this.arrivee = arrivee;
+    private SearchRequestModel() {
+    }
+
+    public SearchRequestModel(String departure, String destination, String date) {
+        this.departure = departure;
+        this.destination = destination;
         this.date = date;
     }
 
-    public String getDepart() {
-        return depart;
+    protected SearchRequestModel(Parcel in) {
+        departure = in.readString();
+        destination = in.readString();
+        date = in.readString();
     }
 
-    public String getArrivee() {
-        return arrivee;
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(departure);
+        dest.writeString(destination);
+        dest.writeString(date);
     }
 
-    public Date getDate() {
-        return date;
-    }
-
-
+    @Override
     public int describeContents() {
         return 0;
     }
 
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(depart);
-        dest.writeString(arrivee);
-        dest.writeLong(date.getTime());
-    }
-
-    public static final Parcelable.Creator<SearchRequestModel> CREATOR = new Parcelable.Creator<SearchRequestModel>()
-    {
+    public static final Creator<SearchRequestModel> CREATOR = new Creator<SearchRequestModel>() {
         @Override
-        public SearchRequestModel createFromParcel(Parcel source)
-        {
-            return new SearchRequestModel(source);
+        public SearchRequestModel createFromParcel(Parcel in) {
+            return new SearchRequestModel(in);
         }
 
         @Override
-        public SearchRequestModel[] newArray(int size)
-        {
+        public SearchRequestModel[] newArray(int size) {
             return new SearchRequestModel[size];
         }
     };
 
-    public SearchRequestModel(Parcel in) {
-        this.depart = in.readString();
-        this.arrivee = in.readString();
-        this.date = new Date(in.readLong());
+    public String getDeparture() {
+        return departure;
     }
 
+    public String getDestination() {
+        return destination;
+    }
+
+    public String getDate() {
+        return date;
+    }
 }

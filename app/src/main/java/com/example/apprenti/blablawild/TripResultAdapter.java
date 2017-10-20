@@ -1,53 +1,33 @@
 package com.example.apprenti.blablawild;
 
-import android.content.Context;
-import android.view.LayoutInflater;
+import android.app.Activity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.List;
+import com.google.firebase.database.Query;
+
+import java.text.SimpleDateFormat;
 
 /**
- * Created by apprenti on 13/09/17.
+ * @author greg
+ * @since 6/21/13
+ *
+ * This class is an example of how to use FirebaseListAdapter. It uses the <code>Chat</code> class to encapsulate the
+ * data for each individual chat message
  */
 
-public class TripResultAdapter extends ArrayAdapter<TripResultModel> {
+public class TripResultAdapter extends FirebaseListAdapter<ItineraryModel> {
 
-    public TripResultAdapter(Context context, List<TripResultModel> tripResultModels) {
-        super(context, 0, tripResultModels);
+    public TripResultAdapter(Query ref, Activity activity, int layout) {
+        super(ref, ItineraryModel.class, layout, activity);
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    protected void populateView(View v, ItineraryModel itineraryModel) {
 
-        if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.trip_item, parent, false);
-        }
+        String date = new SimpleDateFormat("dd/MM/yyyy").format(itineraryModel.getDepartureDate());
 
-        TripResultModelViewHolder viewHolder = (TripResultModelViewHolder) convertView.getTag();
-        if (viewHolder == null) {
-            viewHolder = new TripResultModelViewHolder();
-            viewHolder.firstName = convertView.findViewById(R.id.firstName);
-            viewHolder.departureTime = convertView.findViewById(R.id.departureTime);
-            viewHolder.viewPrice = convertView.findViewById(R.id.viewPrice);
-            convertView.setTag(viewHolder);
-        }
-
-        TripResultModel tripResultModel = getItem(position);
-        viewHolder.firstName.setText(tripResultModel.getFirstName());
-        viewHolder.departureTime.setText(tripResultModel.getDepartureTime().toString());
-        viewHolder.viewPrice.setText(String.valueOf(tripResultModel.getViewPrice()));
-
-        return convertView;
+        ((TextView)v.findViewById(R.id.departureTime)).setText(itineraryModel.getDepartureTime() + " / " + date);
+        ((TextView)v.findViewById(R.id.viewPrice)).setText(itineraryModel.getPrice() + " €");
     }
-
-    private class TripResultModelViewHolder {
-        public TextView firstName;
-        public TextView departureTime;
-        public TextView viewPrice;
-
-    }
-
 }

@@ -1,9 +1,7 @@
 package com.example.apprenti.blablawild;
 
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
-import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,75 +10,73 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.util.Locale;
 
 public class SearchItinaryActivity extends AppCompatActivity {
-    static EditText date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_itinary);
-        date = (EditText) findViewById(R.id.textView6);
+        setContentView(R.layout.activity_search_itinerary);
 
-        Button rechercher = (Button) findViewById(R.id.button);
-        rechercher.setOnClickListener(new View.OnClickListener() {
+        final EditText editDeparture = findViewById(R.id.textView2);
+        final EditText editDestination = findViewById(R.id.textView4);
+        final EditText editDate = findViewById(R.id.textView6);
+        Button buttonSearch = findViewById(R.id.button);
+
+        buttonSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String departure = editDeparture.getText().toString();
+                String destination = editDestination.getText().toString();
+                String date = editDate.getText().toString();
+
+                if (departure.isEmpty() || destination.isEmpty()) {
+                    Toast formIsEmpty = Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast), Toast.LENGTH_SHORT);
+                    formIsEmpty.show();
+                } else {
+                    // Aller sur la page des résultats avec utilisation de Parcelable
+                    Intent intent = new Intent(SearchItinaryActivity.this,
+                            ViewSearchItineraryResultsListActivity.class);
+                    SearchRequestModel searchRequest = new SearchRequestModel(departure, destination, date);
+                    intent.putExtra("searchRequest", searchRequest);
+
+                    SearchItinaryActivity.this.startActivity(intent);
+                }
+            }
+        });
+
+        final Calendar myCalendar = Calendar.getInstance();
+        final DatePickerDialog.OnDateSetListener dateListener = new DatePickerDialog.OnDateSetListener() {
 
             @Override
-            public void onClick(View v) {
+            public void onDateSet(DatePicker view, int year, int monthOfYear,
+                                  int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, monthOfYear);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel(editDate, myCalendar);
+            }
+        };
 
-                EditText depart = (EditText) findViewById(R.id.textView2);
-                String dep = depart.getText().toString();
-                EditText arrivee = (EditText) findViewById(R.id.textView4);
-                String arr = arrivee.getText().toString();
-                SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yy");
-                Date date1 = null;
-                try {
-                    date1 = sdf.parse(date.getText().toString());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-
-                if (depart.getText().toString().trim().length() == 0 || arrivee.getText().toString().trim().length() == 0 || date.getText().toString().trim().length() == 0 ) {
-                    Toast.makeText(SearchItinaryActivity.this, R.string.toast, Toast.LENGTH_SHORT).show();
-                } else {
-                    Intent resultat = new Intent(SearchItinaryActivity.this, ViewSearchItineraryResultsListActivity.class);
-                    SearchRequestModel search = new SearchRequestModel(dep, arr, date1);
-                    resultat.putExtra("search", search);
-                    startActivity(resultat);
-                }
+        editDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new DatePickerDialog(SearchItinaryActivity.this,
+                        dateListener,
+                        myCalendar.get(Calendar.YEAR),
+                        myCalendar.get(Calendar.MONTH),
+                        myCalendar.get(Calendar.DAY_OF_MONTH)
+                ).show();
             }
         });
     }
 
-    public static class DatePickerFragment extends DialogFragment
-            implements DatePickerDialog.OnDateSetListener {
-
-        @Override
-        public Dialog onCreateDialog(Bundle savedInstanceState) {
-            // Use the current date as the default date in the picker
-            final Calendar c = Calendar.getInstance();
-            int year = c.get(Calendar.YEAR);
-            int month = c.get(Calendar.MONTH);
-            int day = c.get(Calendar.DAY_OF_MONTH);
-
-            // Create a new instance of DatePickerDialog and return it
-            return new DatePickerDialog(getActivity(), this, year, month, day);
-        }
-
-        public void onDateSet(DatePicker view, int year, int month, int day) {
-            // Do something with the date chosen by the user
-            date.setText(day + "/" + (month + 1) + "/" + year);
-
-        }
+    private void updateLabel(EditText editText, Calendar myCalendar) {
+        String myFormat = "dd/MM/yyyy";
+        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
+        editText.setText(sdf.format(myCalendar.getTime()));
     }
-
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getSupportFragmentManager(), "datePicker");
-    }
-
 }

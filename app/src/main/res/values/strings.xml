@@ -1,14 +1,19 @@
 <resources>
-    <string name="app_name">Bla Bla Wild</string>
-    <string name="search_text">Rechercher</string>
-    <string name="action_settings">Settings</string>
+    <string name="nomApplication">Bla Bla Wild</string>
+    <string name="rechercher">Rechercher</string>
+    <string name="paramètres">Paramètres</string>
     <string name="rechercherAccueil">Rechercher un itinéraire</string>
     <string name="depart">Départ</string>
     <string name="destination">Destination</string>
     <string name="date">Date</string>
     <string name="rechercherRoute">Rechercher</string>
-    <string name="departureTime">Heure de départ</string>
-    <string name="firstName">Prénom</string>
-    <string name="viewPrice">Voir prix</string>
+    <string name="heureDepart">Heure de départ</string>
+    <string name="prenom">Prénom</string>
+    <string name="voirPrix">Voir prix</string>
     <string name="toast">Veuillez renseigner tous les champs.</string>
+    <string name="proposerRoute">Proposer un itinéraire</string>
+    <string name="prix">Prix</string>
+    <string name="publier">Publier</string>
+    <string name="dateDepart">Date de départ</string>
+    <string name="itineraire">Itinéraire créé</string>
 </resources>

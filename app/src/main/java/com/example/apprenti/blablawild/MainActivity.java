@@ -13,20 +13,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button demarrage= (Button)findViewById(R.id.button2);
+        Button demarrage = findViewById(R.id.button2);
         demarrage.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 Intent recherche = new Intent(MainActivity.this, SearchItinaryActivity.class);
                 startActivity(recherche);
             }
+        });
 
-            });
-
+        Button soumettre = findViewById(R.id.button3);
+        soumettre.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent proposer = new Intent(MainActivity.this, SubmitItineraryActivity.class);
+                startActivity(proposer);
+            }
+        });
 
     }
 }
